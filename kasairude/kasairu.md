@@ -10,7 +10,7 @@
 ### それぞれの役割
 
 - [Lambda](https://aws.amazon.com/jp/lambda/)
-  - 本日の主役
+  - 主役
   - イベント発生時にプログラムを起動
   - プログラム実行用のサーバーを用意しなくていいので楽
   - 今回はお天気情報を取得して、必要応じてツイートするプログラムが稼働
@@ -36,13 +36,54 @@
 
 # 作り方
 
+多分、作る人以内と思うので備忘録のテンションで書いていきます（笑）
+
 ## 環境
 
-## AWS アカウント準備
+Windows10 (WSL2 Ubuntu)
 
-## AWS CLI インストール
+## AWS アカウント作成
 
-## nodejs インストール
+[ここ](https://aws.amazon.com/jp/)からアカウント作成<br>
+アカウント作成後、しばらくはサービスが使用できない（支払情報の確認？？）
+
+## IAM の作成
+
+1. [IAM ダッシュボード](https://console.aws.amazon.com/iamv2/home#/home)のアクセス管理 -> ユーザーを選択
+1. ユーザーを追加をクリック
+1. ユーザー名等の設定
+1. 権限の設定
+   - 今回は「AdministratorAccess」を使用してますが、ちゃんと必要最小限の権限設定にしましょう..
+1. タグなどは設定せず、ユーザー作成までクリック
+1. ユーザーの完成
+   - アクセスキーとシークレットアクセスキーは誰にも教えないようにしましょう（マジで）
+
+## 各種インストール
+
+### AWS SAM CLI
+
+[参考ページ](https://docs.aws.amazon.com/ja_jp/serverless-application-model/latest/developerguide/serverless-sam-cli-install-linux.html)
+
+```sh
+# ファイルダウンロード
+curl -OL https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip
+
+# 展開
+unzip aws-sam-cli-linux-x86_64.zip -d sam-installation
+
+# インストール
+sudo ./sam-installation/install
+
+# 確認
+sam --version
+```
+
+### nodejs 14
+
+どうやってインストールしたか忘れた...<br>
+素直に`apt install nodejs`だと v10.x.x がインストールされる（2021/10/28 時点）ので、何かしたんだけど何したか忘れた。<br>
+
+[参考ページ](https://www.stewright.me/2021/03/install-nodejs-14-on-ubuntu-20-04/)（これかな？知らんけど）
 
 ## Open Weather Map の API key 取得
 
