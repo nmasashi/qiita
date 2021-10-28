@@ -52,11 +52,14 @@ Windows10 (WSL2 Ubuntu)
 1. [IAM ダッシュボード](https://console.aws.amazon.com/iamv2/home#/home)のアクセス管理 -> ユーザーを選択
 1. ユーザーを追加をクリック
 1. ユーザー名等の設定
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/add_user01.png?raw=true)
 1. 権限の設定
    - 今回は「AdministratorAccess」を使用してますが、ちゃんと必要最小限の権限設定にしましょう..
+     ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/add_user02.png?raw=true)
 1. タグなどは設定せず、ユーザー作成までクリック
 1. ユーザーの完成
    - アクセスキーとシークレットアクセスキーは誰にも教えないようにしましょう（マジで）
+     ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/add_user03.png?raw=true)
 
 ## 各種インストール
 
@@ -81,7 +84,7 @@ sam --version
 ### nodejs 14
 
 どうやってインストールしたか忘れた...<br>
-素直に`apt install nodejs`だと v10.x.x がインストールされる（2021/10/28 時点）ので、何かしたんだけど何したか忘れた。<br>
+素直に `apt install nodejs` だと v10.x.x がインストールされる（2021/10/28 時点）ので、何かしたんだけど何したか忘れた。<br>
 
 [参考ページ](https://www.stewright.me/2021/03/install-nodejs-14-on-ubuntu-20-04/)（これかな？知らんけど）
 
@@ -90,6 +93,94 @@ sam --version
 ## Twitter API の API key 取得
 
 ## System Manager に API key を設定
+
+## プログラム書く
+
+### テンプレート作成
+
+AWS SAM CLI を使用して任意のフォルダにテンプレートを作成する
+
+1. `sam init` を打つ
+1. テンプレートは AWS Quick Start Templates を選択
+1. パッケージタイプは Zip を選択
+1. runtime は nodejs14.x を選択
+1. Project name は kasairude
+1. クイックスタートテンプレートはスケジュールイベントを選択
+
+こんな感じ ↓
+
+```shell
+$ sam init
+Which template source would you like to use?
+        1 - AWS Quick Start Templates
+        2 - Custom Template Location
+Choice: 1
+What package type would you like to use?
+        1 - Zip (artifact is a zip uploaded to S3)
+        2 - Image (artifact is an image uploaded to an ECR image repository)
+Package type: 1
+
+Which runtime would you like to use?
+        1 - nodejs14.x
+        2 - python3.9
+        3 - ruby2.7
+        4 - go1.x
+        5 - java11
+        6 - dotnetcore3.1
+        7 - nodejs12.x
+        8 - nodejs10.x
+        9 - python3.8
+        10 - python3.7
+        11 - python3.6
+        12 - python2.7
+        13 - ruby2.5
+        14 - java8.al2
+        15 - java8
+        16 - dotnetcore2.1
+Runtime: 1
+
+Project name [sam-app]: kasairude
+
+Cloning from https://github.com/aws/aws-sam-cli-app-templates
+
+AWS quick start application templates:
+        1 - Hello World Example
+        2 - Step Functions Sample App (Stock Trader)
+        3 - Quick Start: From Scratch
+        4 - Quick Start: Scheduled Events
+        5 - Quick Start: S3
+        6 - Quick Start: SNS
+        7 - Quick Start: SQS
+        8 - Quick Start: Web Backend
+Template selection: 4
+
+    -----------------------
+    Generating application:
+    -----------------------
+    Name: kasairude
+    Runtime: nodejs14.x
+    Architectures: x86_64
+    Dependency Manager: npm
+    Application Template: quick-start-cloudwatch-events
+    Output Directory: .
+
+    Next steps can be found in the README file at ./kasairude/README.md
+```
+
+### 動くか確認
+
+```shell
+# 先ほどの手順で設定したProject nameのフォルダができているはず
+cd kasairude
+
+# パッケージインストール（脆弱性の警告が出るがスルー）
+npm install
+
+# テストを実行
+npm run test
+```
+
+テストがパスしたら OK
 
 ## デプロイ
 
