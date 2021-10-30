@@ -146,8 +146,10 @@ Lambda で必要な API key をパラメータストアに設定する。（ど�
 1. [AWS Systems Manager -> パラメータストア](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/?region=ap-northeast-1&tab=Table) にアクセス
 1. パラメータの作成をクリック
 1. パラメータ情報入力
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/aws01.png?raw=true)
 
 最終的に以下のようになる。
+![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/aws02.png?raw=true)
 
 ## プログラム書く
 
@@ -222,6 +224,16 @@ Template selection: 4
     Next steps can be found in the README file at ./kasairude/README.md
 ```
 
+### コーディング
+
+テンプレートから変更したファイルは以下のもの
+
+- [package.json](https://github.com/nmasashi/kasairude-bot/blob/main/package.json)
+- [src/handlers/scheduled-event-logger.js](https://github.com/nmasashi/kasairude-bot/blob/main/src/handlers/scheduled-event-logger.js)
+- [\_\_tests\_\_/unit/handlers/scheduled-event-logger.test.js](https://github.com/nmasashi/kasairude-bot/blob/main/__tests__/unit/handlers/scheduled-event-logger.test.js)
+- [temp;ate.yml](https://github.com/nmasashi/kasairude-bot/blob/main/template.yml)
+  - cron の設定はこれでする。設定時間は GMT になっていることに注意
+
 ### 動くか確認
 
 ```shell
@@ -239,4 +251,32 @@ npm run test
 
 ## デプロイ
 
+```shell
+# ビルド
+sam build
+
+# デプロイ
+sam deploy --guided
+```
+
+[AWS Lambda 関数一覧](https://ap-northeast-1.console.aws.amazon.com/lambda/home?region=ap-northeast-1#/functions) のページで確認
+
 ## テスト
+
+1. テストタブクリック
+1. テストボタンクリック（ペイロードは読んでないので適当で OK）
+1. 実行結果が成功ならば OK
+1. [Cloud Watch](https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logsV2:log-groups) でログを確認できる
+
+あとは、template.yml で設定時間にちゃんと実行されるか見守る。。
+
+# 作ってから思ったこと
+
+Lambda 素人が Lambda 使ってみたの印象
+
+- 軽い API 作るのによさそう
+- 開発環境の整備とかのノウハウで良さそうなのがいまいち見つからない
+- 今回した API key などのシークレットな情報はどのように持つがよい？
+  - 環境変数で持つ
+  - パラメータストアで持つ
+- 次は DynamoDB とかと連携する API 作ってみたい（ネタがない）
