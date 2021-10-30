@@ -38,6 +38,18 @@
 
 多分、作る人以内と思うので備忘録のテンションで書いていきます（笑）
 
+手順概要：
+
+- [AWS アカウント作成](#AWS-アカウント作成)
+- [IAM の作成](#IAM-の作成)
+- [各種インストール](#各種インストール)
+- [Open Weather Map の API key 取得](#Open-Weather-Map-の-API-key-取得)
+- [Twitter API の API key 取得](#Twitter-API-の-API-key-取得)
+- [System Manager に API key を設定](#System-Manager-に-API-key-を設定)
+- [プログラム書く](#プログラム書く)
+- [デプロイ](#デプロイ)
+- [テスト](#テスト)
+
 ## 環境
 
 Windows10 (WSL2 Ubuntu)
@@ -90,9 +102,52 @@ sam --version
 
 ## Open Weather Map の API key 取得
 
+1. (Open Weather Map)[https://api.rakuten.net/community/api/open-weather-map] にアクセス
+1. アカウント登録して再度 (Open Weather Map)[https://api.rakuten.net/community/api/open-weather-map] にアクセスすると 「X-RapidAPI-Key」が発行されているはず。その下の「X-RapidAPI-HOST」も保管しておく。
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/openweather01.png?raw=true)
+
 ## Twitter API の API key 取得
 
+API を使うために以下のキー情報を取得する
+
+- consumer_key (API Key)
+- consumer_secret (API Key Secret)
+- access_token_key (Access Token)
+- access_token_secret (Access Token Secret)
+
+手順：
+
+1. Twitter にログインした状態で [Twitter Developers](https://developer.twitter.com/en/apps/) にアクセス
+1. 「Create an app」をクリック
+1. Hobbyist -> Making a bot を選択
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/twitter01.png?raw=true)
+1. 使用用途などの作文
+1. Create Project をクリック
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/twitter02.png?raw=true)
+1. プロジェクト名などの設定
+1. 画像のボタンを押して各種キー情報を取得
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/twitter03.png?raw=true)
+
 ## System Manager に API key を設定
+
+Lambda で必要な API key をパラメータストアに設定する。（どこに API key を置くのがいいのかよくわからなかったので、とりあえずパラメータストアに置いといた。）
+
+設定する API は以下の 6 つ
+
+| 名前                | 取得元           |
+| ------------------- | ---------------- |
+| CONSUMER_KEY        | Twitter          |
+| CONSUMER_SECRET     | Twitter          |
+| ACCESS_TOKEN_KEY    | Twitter          |
+| ACCESS_TOKEN_SECRET | Twitter          |
+| X_RAPIDAPI_HOST     | Open Weather Map |
+| X_RAPIDAPI_KEY      | Open Weather Map |
+
+1. [AWS Systems Manager -> パラメータストア](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/?region=ap-northeast-1&tab=Table) にアクセス
+1. パラメータの作成をクリック
+1. パラメータ情報入力
+
+最終的に以下のようになる。
 
 ## プログラム書く
 
