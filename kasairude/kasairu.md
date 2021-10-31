@@ -284,6 +284,14 @@ sam deploy --guided
 
 あとは、template.yml で設定時間にちゃんと実行されるか見守る。。
 
+## 費用
+
+API も AWS も無料の範囲内で作成できているはず（笑）<br>
+この程度の bot 作成は無料でできる世の中でよかった。
+
+2 週間程度放置した際の AWS の請求
+![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/aws09.png?raw=true)
+
 # 作ってから思ったこと
 
 Lambda 素人が Lambda 使ってみたの印象
