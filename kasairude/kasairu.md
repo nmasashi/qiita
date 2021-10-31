@@ -102,8 +102,8 @@ sam --version
 
 ## Open Weather Map の API key 取得
 
-1. (Open Weather Map)[https://api.rakuten.net/community/api/open-weather-map] にアクセス
-1. アカウント登録して再度 (Open Weather Map)[https://api.rakuten.net/community/api/open-weather-map] にアクセスすると 「X-RapidAPI-Key」が発行されているはず。その下の「X-RapidAPI-HOST」も保管しておく。
+1. [Open Weather Map](https://api.rakuten.net/community/api/open-weather-map) にアクセス
+1. アカウント登録して再度 [Open Weather Map](https://api.rakuten.net/community/api/open-weather-map) にアクセスすると 「X-RapidAPI-Key」が発行されているはず。その下の「X-RapidAPI-HOST」も保管しておく。
    ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/openweather01.png?raw=true)
 
 ## Twitter API の API key 取得
@@ -233,7 +233,7 @@ Template selection: 4
 - [package.json](https://github.com/nmasashi/kasairude-bot/blob/main/package.json)
 - [src/handlers/scheduled-event-logger.js](https://github.com/nmasashi/kasairude-bot/blob/main/src/handlers/scheduled-event-logger.js)
 - [\_\_tests\_\_/unit/handlers/scheduled-event-logger.test.js](https://github.com/nmasashi/kasairude-bot/blob/main/__tests__/unit/handlers/scheduled-event-logger.test.js)
-- [temp;ate.yml](https://github.com/nmasashi/kasairude-bot/blob/main/template.yml)
+- [template.yml](https://github.com/nmasashi/kasairude-bot/blob/main/template.yml)
   - cron の設定はこれでする。設定時間は GMT になっていることに注意
 
 ### 動くか確認
@@ -265,7 +265,7 @@ sam deploy --guided
 1. デフォルトの実行ロールだとパラメータストアにアクセスできないので、権限追加
    ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/aws06.png?raw=true)
 1. ポリシーのアタッチをクリック
-   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/aws06.png?raw=true)
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/aws07.png?raw=true)
 1. AmazonSSMReadOnlyAccess をアタッチ
    ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/aws08.png?raw=true)
 
