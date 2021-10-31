@@ -125,6 +125,8 @@ API を使うために以下のキー情報を取得する
 1. Create Project をクリック
    ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/twitter02.png?raw=true)
 1. プロジェクト名などの設定
+1. App permissions から権限を変更して書き込み権限を与える
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/twitter04.png?raw=true)
 1. 画像のボタンを押して各種キー情報を取得
    ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/twitter03.png?raw=true)
 
@@ -259,7 +261,13 @@ sam build
 sam deploy --guided
 ```
 
-[AWS Lambda 関数一覧](https://ap-northeast-1.console.aws.amazon.com/lambda/home?region=ap-northeast-1#/functions) のページで確認
+1. [AWS Lambda 関数一覧](https://ap-northeast-1.console.aws.amazon.com/lambda/home?region=ap-northeast-1#/functions) のページで確認
+1. デフォルトの実行ロールだとパラメータストアにアクセスできないので、権限追加
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/aws06.png?raw=true)
+1. ポリシーのアタッチをクリック
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/aws06.png?raw=true)
+1. AmazonSSMReadOnlyAccess をアタッチ
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/aws08.png?raw=true)
 
 ## テスト
 
