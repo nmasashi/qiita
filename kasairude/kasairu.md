@@ -6,7 +6,8 @@
 # 仕様
 
 1. 毎朝午前 6 時にお天気情報を取得
-1. 雨が降る場合はツイート
+1. 雨が降る場合はツイート（降らない日は無言）
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/twitter00.png?raw=true)
 
 # 構成図
 
