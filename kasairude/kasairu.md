@@ -1,13 +1,18 @@
-# きっかけ
+# つくったもの（せっかくなので使ってやってください）
 
-最近、AWS のお勉強をしていて Lambda をちょっと使ってみたいと思い作りました。<br>
-何作ろうか考えましたが、ひとまず自分が使いそうでかつ簡単に作れそうな Twitter bot を作ることにしました。<br>
-
-# 仕様
+傘いるで bot（東京）[@kasairu_tokyo](https://twitter.com/kasairu_tokyo)
+傘いるで bot（大阪）[@kasairu_osaka](https://twitter.com/kasairu_osaka)
 
 1. 毎朝午前 6 時にお天気情報を取得
 1. 雨が降る場合はツイート（降らない日は無言）
-   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/twitter00.png?raw=true)
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">今日、傘いるで<br><br>10/31 06:00:43<br> 6 時 小雨<br> 9 時 厚い雲<br>12 時 厚い雲<br>15 時 小雨<br>18 時 小雨<br>21 時 小雨</p>&mdash; 傘いるでbot（東京） (@kasairu_tokyo) <a href="https://twitter.com/kasairu_tokyo/status/1454553882923659266?ref_src=twsrc%5Etfw">October 30, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+[ソースコード(github)](https://github.com/nmasashi/kasairude-bot)
+
+# きっかけ
+
+最近、AWS のお勉強をしていて Lambda をちょっと使ってみたいと思い作りました。
+何作ろうか考えましたが、ひとまず自分が使いそうでかつ簡単に作れそうな Twitter bot を作ることにしました。
 
 # 構成図
 
@@ -42,7 +47,7 @@
 
 # 作り方
 
-多分、作る人以内と思うので備忘録のテンションで書いていきます（笑）
+多分、作る人いないと思うので備忘録のテンションで書いていきます（笑）
 
 手順概要：
 
@@ -62,7 +67,7 @@ Windows10 (WSL2 Ubuntu)
 
 ## AWS アカウント作成
 
-[ここ](https://aws.amazon.com/jp/)からアカウント作成<br>
+[AWS トップページ](https://aws.amazon.com/jp/)からアカウント作成<br>
 アカウント作成後、しばらくはサービスが使用できない（支払情報の確認？？）
 
 ## IAM の作成
@@ -279,14 +284,27 @@ sam deploy --guided
 
 1. テストタブクリック
 1. テストボタンクリック（ペイロードは読んでないので適当で OK）
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/aws04.png?raw=true)
 1. 実行結果が成功ならば OK
 1. [Cloud Watch](https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logsV2:log-groups) でログを確認できる
+   ![](https://github.com/nmasashi/qiita/blob/main/kasairude/image/aws05.png?raw=true)
 
-あとは、template.yml で設定時間にちゃんと実行されるか見守る。。
+あとは、template.yml で設定した時間にちゃんと実行されるか見守る。。
 
 ## 費用
 
-API も AWS も無料の範囲内で作成できているはず（笑）<br>
+無料でできているはず（間違っていたらすみません。。）
+
+| 使用したサービス                     | 無料枠              |
+| ------------------------------------ | ------------------- |
+| Open Weather Map                     | 500 リクエスト / 月 |
+| Twitter                              | 500K ツイート / 月  |
+| AWS Lambda                           | 1M リクエスト / 月  |
+| AWS System Manager（標準バラメータ） | 無料                |
+
+他にも、デプロイの過程で S3 などのサービスを使用していますが、死ぬほどデプロイしない限りは無料枠に収まるはず。
+また、Cloudwatch に関しても 7 日程度でログを自動で削除するようにしておけば無料枠の範囲に収まるはず。
+
 この程度の bot 作成は無料でできる世の中でよかった。
 
 2 週間程度放置した際の AWS の請求
@@ -296,9 +314,9 @@ API も AWS も無料の範囲内で作成できているはず（笑）<br>
 
 Lambda 素人が Lambda 使ってみたの印象
 
-- 軽い API 作るのによさそう
+- サーバーの環境構築いらないのが嬉しい
 - 開発環境の整備とかのノウハウで良さそうなのがいまいち見つからない
-- 今回した API key などのシークレットな情報はどのように持つがよい？
+- API key などのシークレットな情報はどのように持つがよいのか悩んだ
   - 環境変数で持つ
   - パラメータストアで持つ
 - 次は DynamoDB とかと連携する API 作ってみたい（ネタがない）
