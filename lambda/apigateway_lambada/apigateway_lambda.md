@@ -73,12 +73,21 @@
 
 1. [API Gateway](https://ap-northeast-1.console.aws.amazon.com/apigateway/main/apis?region=ap-northeast-1) にアクセス
 1. 削除する API（ここでは「sample-api」）を選択し、アクションから Delete を選択
+   ![](https://github.com/nmasashi/qiita/blob/main/lambda/apigateway_lambada/images/lambda13.png?raw=true)
 1. 削除をクリック
+   ![](https://github.com/nmasashi/qiita/blob/main/lambda/apigateway_lambada/images/lambda14.png?raw=true)
 
 ## Lambda 関数削除
 
 1. [Lambda 関数一覧](https://ap-northeast-1.console.aws.amazon.com/lambda/home?region=ap-northeast-1#/functions)にアクセス
 
 1. 作成した Lambda 関数（ここでは「sample-function」）を選択し、アクションから削除をクリック
+   ![](https://github.com/nmasashi/qiita/blob/main/lambda/apigateway_lambada/images/lambda15.png?raw=true)
+
+1. 削除をクリック
+   ![](https://github.com/nmasashi/qiita/blob/main/lambda/apigateway_lambada/images/lambda16.png?raw=true)
 
 # 最後に
+
+こんな API 手順なくても作れるわ(笑)ってなると思いますが、最近 AWS のことをちゃんと勉強しだしたので手順に起こしてみました。
+次は DynamoDB あたりと絡めてみようかな
